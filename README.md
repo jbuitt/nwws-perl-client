@@ -17,15 +17,15 @@ Now create a config file: (e.g. config.ini)
 [Main]
 server=nwws-oi.weather.gov
 port=5222
-username=[nwws_username]
-password=[nwws_paswword]
+username=[username]
+password=[paswword]
 resource=some_resource
 logfile=/path/to/log/file
 archivedir=/path/to/archive/dir
 debugfile=/path/to/debug/file	(optional)
 ```
 
-Where [nwws_username] and [nwws_password] are your NWWS-2 credentials obtained by signing up [on the NOAA Weather Wire Service website](http://www.nws.noaa.gov/nwws/#NWWS_OI_Request).
+Where [username] and [password] are your NWWS-2 credentials obtained by signing up [on the NOAA Weather Wire Service website](http://www.nws.noaa.gov/nwws/#NWWS_OI_Request).
 
 NOTE: Despite the NWWS-2 website's instructions to use port 5223, this client uses TLS on port 5222. Support for SSL on port 5223 was buggy within the client, so I removed it.
 
