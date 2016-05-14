@@ -1,6 +1,6 @@
 # nwws-perl-client
 
-A simple client for the NWWS-2 OI (NOAA Weather Wire Service version 2 Open Interface) written in Perl. The NOAA Weather Wire Service is a satellite data collection and dissemination system operated by the [National Weather Service](http://weather.gov), which was established in October 2000. Its purpose is to provide state and federal government, commercial users, media and private citizens with timely delivery of meteorological, hydrological, climatological and geophysical information. 
+A simple client for the NWWS-2 OI ([NOAA Weather Wire Service](http://www.nws.noaa.gov/nwws/) version 2 Open Interface) written in Perl. The NOAA Weather Wire Service is a satellite data collection and dissemination system operated by the [National Weather Service](http://weather.gov), which was established in October 2000. Its purpose is to provide state and federal government, commercial users, media and private citizens with timely delivery of meteorological, hydrological, climatological and geophysical information. 
 
 This client was largely based on the example script found in the [Net::Jabber Perl module](http://search.cpan.org/~reatmon/Net-Jabber-2.0/lib/Net/Jabber.pm) documentation directory `/usr/share/doc/libnet-jabber-perl/examples/client.pl`.
 
