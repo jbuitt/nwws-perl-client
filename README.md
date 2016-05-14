@@ -35,7 +35,7 @@ Now run the script:
 $ ./nwws2.pl /path/to/config.ini
 ```
 
-Provided that you're able to connect to the NWWS and your credentials are accepted, you will start to see products appear in the supplied archive directory. You can then type `Ctrl+Z` and then `bg` to send it to the background to continue downloading products.
+Provided that you're able to connect to the NWWS and your credentials are accepted, you will start to see products appear in the supplied archive directory. You can then type `Ctrl+Z` and then `bg` to send it to the background to continue downloading products. The script will automatically reconnect to NWWS if the connection is dropped.
 
 ####Author
 
