@@ -176,7 +176,7 @@ sub InMessage {
 	if (defined($cfg->val('Main', 'panrun'))) {
 		if ( -x $cfg->val('Main', 'panrun')) {
 			chomp(my $cwd = `pwd`);
-			my $cmd = $cfg->val('Main', 'panrun') . ' ' . $cwd . '/' . $cfg->val('Main', 'archivedir') . '/' . $newref->{'cccc'} . '/' . $file . ' 2>&1 &';
+			my $cmd = $cfg->val('Main', 'panrun') . ' ' . $cwd . '/' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file . ' 2>&1 &';
 			my @output = `$cmd`;
 			if (scalar(@output) == 0) {
 				printToLog("Error running PAN executable: " . join(" ", @output));
