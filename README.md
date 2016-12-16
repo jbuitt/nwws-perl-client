@@ -5,7 +5,7 @@ A simple client for the NWWS-2 OI ([NOAA Weather Wire Service](http://www.nws.no
 This client was largely based on the example script found in the [Net::Jabber Perl module](http://search.cpan.org/~reatmon/Net-Jabber-2.0/lib/Net/Jabber.pm) documentation directory `/usr/share/doc/libnet-jabber-perl/examples/client.pl`.
 
 ####How do I run it?
-This script was developed and tested on [Ubuntu 14.04](http://ubuntu.com). After downloading the latest [release](https://github.com/jbuitt/nwws-perl-client), run the following command to install the dependencies:
+This script was developed and tested on [Ubuntu 16.04](http://ubuntu.com). After downloading the latest [release](https://github.com/jbuitt/nwws-perl-client), run the following command to install the dependencies:
 
 ```
 $ sudo apt-get -y install libnet-jabber-perl libconfig-inifiles-perl libxml-simple-perl
@@ -23,9 +23,10 @@ resource=[resource]
 logfile=/path/to/log/file
 archivedir=/path/to/archive/dir
 debugfile=/path/to/debug/file
+panrun=/path/to/executable_or_script
 ```
 
-Where [username] and [password] are your NWWS-2 credentials obtained by signing up [on the NOAA Weather Wire Service website](http://www.nws.noaa.gov/nwws/#NWWS_OI_Request). You may use whatever you would like for [resource]. If you supply a path to a file for `debugfile`, it will log all `Net::Jabber` debug messages to that file, however this is optional.
+Where [username] and [password] are your NWWS-2 credentials obtained by signing up [on the NOAA Weather Wire Service website](http://www.nws.noaa.gov/nwws/#NWWS_OI_Request). You may use whatever you would like for [resource]. If you supply a path to a file for `debugfile`, it will log all `Net::Jabber` debug messages to that file, however this is optional. The [panrun] variable is another optional option that indicates a Product Arrival Notification (PAN) script that you'd like to run on product arrival.
 
 NOTE: Despite the [NWWS-2 website's instructions](http://www.nws.noaa.gov/nwws/#Issues) to use port 5223, this client uses TLS on port 5222. Support for SSL on port 5223 was buggy within the client, so I removed it.
 
