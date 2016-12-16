@@ -167,8 +167,8 @@ sub InMessage {
 	my $newId = substr($rightnow_gmt[5]+1900, 0, 2) . (length($rightnow_gmt[2]) == 2 ? '0' . $rightnow_gmt[2] : $rightnow_gmt[2]) . (length($rightnow_gmt[1]) == 2 ? '0' . $rightnow_gmt[1] : $rightnow_gmt[1]) . '_' . substr(time(), 0, 3) . substr($tmpArray[1], 0, 5);
 	my $file = lc($newref->{'cccc'}) . '_' . lc($newref->{'ttaaii'}) . '-' . lc($newref->{'awipsid'}) . '.' . $newId . '.txt';
 	open(OUTFILE, '>' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file) or die $!;
-	my @lines = split("/\n\n/", $newref->{'content'});
-	for(my $i=0; $i<@lines; $i++) {
+	my @lines = split("/\n/", $newref->{'content'});
+	for(my $i=0; $i<@lines; $i+=2) {
 		print OUTFILE $lines[$i] . "\n";
 	}
 	close(OUTFILE);
