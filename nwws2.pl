@@ -150,18 +150,6 @@ sub InMessage {
 	if (! -d $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'})) {
 		mkdir(lc($cfg->val('Main', 'archivedir')) . '/' . lc($newref->{'cccc'})) or die "Could not create WFO directory: $!\n";
 	}
-	#Create product file
-	#my $prodDate = $newref->{'issue'};
-	#$prodDate =~ s/[\-T\:]//g;
-	#$prodDate =~ s/Z$//;
-	#my $file = $newref->{'awipsid'} . '-' . $newref->{'id'} . '-' . $prodDate . '.txt';
-	#open(OUTFILE, ">" . $cfg->val('Main', 'archivedir') . '/' . $newref->{'cccc'} . '/' . $file) or die $!;
-	#my @lines = split(/\n/, $newref->{'content'});
-	#for(my $i=0; $i<@lines; $i+=2) {
-	#	print OUTFILE $lines[$i] . "\n";
-	#}
-	#close(OUTFILE);
-	#print Dumper($newref);
 	my @tmpArray = split(/\./, $newref->{'id'});
 	my @rightnow_gmt = gmtime(time());
 	my $newId = substr($rightnow_gmt[5]+1900, 0, 2) . (length($rightnow_gmt[2]) == 2 ? '0' . $rightnow_gmt[2] : $rightnow_gmt[2]) . (length($rightnow_gmt[1]) == 2 ? '0' . $rightnow_gmt[1] : $rightnow_gmt[1]) . '_' . substr(time(), 0, 3) . substr($tmpArray[1], 0, 5);
@@ -175,9 +163,9 @@ sub InMessage {
 	# Perform Product Arrival Notification (PAN) action, if it exists and is executable
 	if (defined($cfg->val('Main', 'panrun'))) {
 		if ( -x $cfg->val('Main', 'panrun')) {
-			my $cmd = $cfg->val('Main', 'panrun') . ' ' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file . ' 2>&1 &';
+			my $cmd = $cfg->val('Main', 'panrun') . ' ' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file;
 			my @output = `$cmd`;
-			if (scalar(@output) == 0) {
+			if (scalar(@output) != 0) {
 				printToLog("Error running PAN executable: " . join(" ", @output));
 			}
 		}
