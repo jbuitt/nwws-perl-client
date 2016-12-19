@@ -152,7 +152,9 @@ sub InMessage {
 	}
 	my @tmpArray = split(/\./, $newref->{'id'});
 	my @rightnow_gmt = gmtime(time());
-	my $newId = substr($rightnow_gmt[5]+1900, 0, 2) . (length($rightnow_gmt[2]) == 2 ? '0' . $rightnow_gmt[2] : $rightnow_gmt[2]) . (length($rightnow_gmt[1]) == 2 ? '0' . $rightnow_gmt[1] : $rightnow_gmt[1]) . '_' . substr(time(), 0, 3) . substr($tmpArray[1], 0, 5);
+	$rightnow_gmt[1] .= '0' . $rightnow_gmt[1] if length($rightnow_gmt[1]) == 1;
+	$rightnow_gmt[2] .= '0' . $rightnow_gmt[2] if length($rightnow_gmt[2]) == 1;
+	my $newId = substr($rightnow_gmt[5]+1900, 2, 2) . $rightnow_gmt[2] . $rightnow_gmt[1] . '_' . substr(time(), 0, 3) . substr($tmpArray[1], 0, 5);
 	my $file = lc($newref->{'cccc'}) . '_' . lc($newref->{'ttaaii'}) . '-' . lc($newref->{'awipsid'}) . '.' . $newId . '.txt';
 	open(OUTFILE, '>' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file) or die $!;
 	my @lines = split(/\n\n/, $newref->{'content'});
