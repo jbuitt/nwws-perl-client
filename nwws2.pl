@@ -113,25 +113,18 @@ sub Stop {
 
 ################################################################################
 sub InMessage {
-	my $sid = shift;
+	my $sid     = shift;
 	my $message = shift;
-	my $type = $message->GetType();
-	my $fromJID = $message->GetFrom("jid");
-	my $from = $fromJID->GetUserID();
-	my $resource = $fromJID->GetResource();
-	my $subject = $message->GetSubject();
+	#my $type = $message->GetType();
+	#my $fromJID = $message->GetFrom("jid");
+	#my $from = $fromJID->GetUserID();
+	#my $resource = $fromJID->GetResource();
+	#my $subject = $message->GetSubject();
 	my $body = $message->GetBody();
 	return if $body =~ /^\*\*WARNING\*\*/;
 	return if $body =~ /issues  valid/;
 	return if $body =~ /issues TST valid/;
 	my $xml = $message->GetXML();
-	#printToLog("Message ($type)");
-	#printToLog("  From: $from ($resource)");
-	#printToLog("  Subject: $subject");
-	#printToLog("  Body: $body");
-	#printToLog("===");
-	#printToLog($xml);
-	#printToLog("===");
 	my $ref = XMLin($xml);
 	return if !defined($ref->{'body'});
 	#print $ref->{'body'} . "\n";
