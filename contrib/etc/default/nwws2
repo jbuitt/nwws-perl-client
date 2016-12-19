@@ -1,0 +1,4 @@
+BASEDIR=/opt/nwws-perl-client
+PIDFILE=/run/nwws2.pid
+USER=nwws2user
+DAEMON_OPTS=/opt/nwws-perl-client/config.ini
