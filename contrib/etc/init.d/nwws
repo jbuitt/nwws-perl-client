@@ -1,23 +1,23 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:	     nwws2
+# Provides:	     nwws
 # Required-Start:    $local_fs $remote_fs $network $syslog $named
 # Required-Stop:     $local_fs $remote_fs $network $syslog $named
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: starts the NOAA Weather Wire Perl client
-# Description:       starts nwws2 using start-stop-daemon
+# Description:       starts nwws using start-stop-daemon
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/opt/nwws-perl-client/nwws2.pl
-NAME=nwws2
-DESC=nwws2
+NAME=nwws
+DESC=nwws
 
 # Include nwws2 defaults if available
-if [ -r /etc/default/nwws2 ]; then
-	. /etc/default/nwws2
+if [ -r /etc/default/nwws ]; then
+	. /etc/default/nwws
 fi
 
 [ "$BASEDIR" = "" ] && exit 0
@@ -29,7 +29,7 @@ test -x $DAEMON || exit 0
 . /lib/init/vars.sh
 . /lib/lsb/init-functions
 
-start_nwws2() {
+start_nwws() {
 	# Start the daemon/service
 	#
 	# Returns:
@@ -47,7 +47,7 @@ start_nwws2() {
 	fi
 }
 
-stop_nwws2() {
+stop_nwws() {
 	# Stops the daemon/service
 	#
 	# Return
@@ -67,7 +67,7 @@ stop_nwws2() {
 case "$1" in
 	start)
 		log_daemon_msg "Starting $DESC" "$NAME"
-		start_nwws2
+		start_nwws
 		case "$?" in
 			0|1) log_end_msg 0 ;;
 			2)   log_end_msg 1 ;;
@@ -75,7 +75,7 @@ case "$1" in
 		;;
 	stop)
 		log_daemon_msg "Stopping $DESC" "$NAME"
-		stop_nwws2
+		stop_nwws
 		case "$?" in
 			0|1) log_end_msg 0 ;;
 			2)   log_end_msg 1 ;;
@@ -90,10 +90,10 @@ case "$1" in
 			exit $?
 		fi
 
-		stop_nwws2
+		stop_nwws
 		case "$?" in
 			0|1)
-				start_nwws2
+				start_nwws
 				case "$?" in
 					0) log_end_msg 0 ;;
 					1) log_end_msg 1 ;; # Old process is still running
