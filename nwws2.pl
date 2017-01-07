@@ -149,6 +149,10 @@ sub InMessage {
 	$rightnow_gmt[2] .= '0' . $rightnow_gmt[2] if length($rightnow_gmt[2]) == 1;
 	my $newId = substr($rightnow_gmt[5]+1900, 2, 2) . $rightnow_gmt[2] . $rightnow_gmt[1] . '_' . substr(time(), 0, 3) . substr($tmpArray[1], 0, 5);
 	my $file = lc($newref->{'cccc'}) . '_' . lc($newref->{'ttaaii'}) . '-' . lc($newref->{'awipsid'}) . '.' . $newId . '.txt';
+	if ( -e $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file) {
+		# Don't process the same exact file more than once
+		return;
+	}
 	open(OUTFILE, '>' . $cfg->val('Main', 'archivedir') . '/' . lc($newref->{'cccc'}) . '/' . $file) or die $!;
 	my @lines = split(/\n\n/, $newref->{'content'});
 	for(my $i=0; $i<@lines; $i++) {
