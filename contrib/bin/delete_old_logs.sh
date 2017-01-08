@@ -1,2 +1,3 @@
 #!/bin/bash
-/usr/bin/find /opt/nwws-perl-client/ -name "*.log" -mtime +7 -delete
+. /etc/default/nwws
+/usr/bin/find $BASEDIR -name "*.log" -mtime +7 -delete
